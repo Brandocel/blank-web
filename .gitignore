@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+data/*.jsonl
+.env*.local
+next-env.d.ts
+*.tsbuildinfo
+
+# local env and editor settings
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+.DS_Store
