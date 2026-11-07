@@ -1,0 +1,27 @@
+# Render Blueprint: one Node web service running `next start`.
+# Leads are appended to data/leads.jsonl on the instance disk, which Render wipes on every deploy.
+# Set LEAD_WEBHOOK_URL in the dashboard to keep them (n8n, Make, Zapier, CRM webhook...).
+services:
+  - type: web
+    name: blank-web
+    runtime: node
+    plan: free
+    region: oregon
+    branch: main
+    autoDeploy: true
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: NEXT_PUBLIC_CONTACT_EMAIL
+        value: hola@blank.mx
+      - key: NEXT_PUBLIC_WHATSAPP
+        value: "5210000000000"
+      - key: NEXT_PUBLIC_INSTAGRAM
+        value: blank.space
+      - key: LEAD_WEBHOOK_URL
+        sync: false
