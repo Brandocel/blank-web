@@ -5,7 +5,7 @@ export type Lead = { type: LeadType; lang: "es" | "en"; fields: Record<string, s
 /** In the order the fields appear, so the first problem reported is the first one on screen. */
 export const REQUIRED: Record<LeadType, string[]> = {
   booking: ["type", "date", "venue", "name", "email"],
-  musician: ["instrument", "years", "link", "name", "city", "whatsapp", "email", "consent"],
+  musician: ["name", "instrument", "years", "link", "city", "whatsapp", "email", "consent"],
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
