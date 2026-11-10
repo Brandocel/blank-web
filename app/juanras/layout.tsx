@@ -12,6 +12,8 @@ const script = Mr_Dafoe({ subsets: ["latin"], weight: "400", variable: "--jr-fon
 export const metadata: Metadata = {
   title: copy.es.meta.title,
   description: copy.es.meta.description,
+  // A proposal on BLANK's domain: it must not compete with the band's own site in search.
+  robots: { index: false, follow: false },
   openGraph: {
     title: copy.es.meta.title,
     description: copy.es.meta.description,

@@ -210,20 +210,46 @@ body:has(.jr) { background: #000; }
 .jr-marquee span:nth-child(3n + 1) { color: var(--jr-bone); -webkit-text-stroke: 0; }
 @keyframes jr-marquee { to { transform: translateX(-50%); } }
 
-.jr-gallery { height: 100svh; min-height: 560px; display: grid; grid-template-columns: 100%; grid-template-rows: auto minmax(0, 1fr); gap: clamp(16px, 2.5vh, 32px); padding-block: clamp(84px, 11vh, 120px) clamp(28px, 5vh, 56px); overflow: hidden; }
-.jr-gallery__title { font-size: clamp(26px, 3vw, 48px); line-height: 1.05; font-weight: 500; letter-spacing: -0.02em; }
+/* The strip: title and progress line share the gutter with the first photo, so everything starts on one edge. */
+.jr-gallery { --p: 0; height: 100svh; min-height: 560px; display: grid; grid-template-columns: 100%; grid-template-rows: auto minmax(0, 1fr); gap: clamp(16px, 2.6vh, 30px); padding-block: clamp(84px, 11vh, 116px) clamp(22px, 3.5vh, 44px); overflow: hidden; }
+.jr-gallery__head { display: flex; align-items: center; gap: clamp(16px, 3vw, 48px); padding-inline: var(--jr-gutter); }
+.jr-gallery__title { font-size: clamp(28px, 3.4vw, 58px); line-height: 1; font-weight: 500; letter-spacing: -0.025em; }
+.jr-gallery__bar { flex: 1; min-width: 40px; height: 2px; background: var(--line); }
+.jr-gallery__bar i { display: block; height: 100%; background: var(--jr-neon); box-shadow: 0 0 12px var(--jr-neon); transform-origin: left center; transform: scaleX(var(--p)); }
 .jr-gallery__track { display: flex; align-items: stretch; gap: clamp(14px, 2.2vw, 36px); padding-inline: var(--jr-gutter); width: max-content; height: 100%; will-change: transform; }
-.jr-gallery__item { flex: none; height: 100%; aspect-ratio: 16 / 10; overflow: hidden; }
-.jr-gallery__item:nth-child(3n + 2) { height: 72%; aspect-ratio: 4 / 5; align-self: flex-end; }
-.jr-gallery__item:nth-child(3n) { height: 78%; aspect-ratio: 16 / 11; align-self: flex-start; }
-.jr-gallery__item img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --k is the share of the strip's height a frame takes; the caption sits on its open side. */
+.jr-shot { --k: 1; --cap: 44px; flex: none; height: 100%; display: flex; flex-direction: column; gap: 10px; }
+.jr-shot__frame { flex: none; height: calc((100% - var(--cap) - 10px) * var(--k)); aspect-ratio: 16 / 10; overflow: hidden; background: #000; }
+.jr-shot__frame img { width: 100%; height: 100%; object-fit: cover; }
+.jr-shot figcaption { width: 0; min-width: 100%; min-height: var(--cap); font-size: clamp(16px, 1.1vw, 20px); line-height: 1.25; font-weight: 500; color: rgba(244, 242, 236, 0.86); }
+.jr-shot--tall .jr-shot__frame { aspect-ratio: 3 / 4; }
+.jr-shot--tall .jr-shot__frame img { object-position: 38% 50%; }
+.jr-shot--tall-low { --k: 0.8; justify-content: flex-end; }
+.jr-shot--tall-low .jr-shot__frame { aspect-ratio: 4 / 5; }
+.jr-shot--tall-low .jr-shot__frame img { object-position: 72% 50%; }
+.jr-shot--small-high { --k: 0.66; }
+.jr-shot--small-high .jr-shot__frame { aspect-ratio: 16 / 9; }
+.jr-shot--wide-low { --k: 0.8; justify-content: flex-end; }
+.jr-shot--tall-low figcaption, .jr-shot--wide-low figcaption { order: -1; display: flex; align-items: flex-end; }
+
+.jr-gallery__end { flex: none; align-self: center; display: grid; justify-items: start; gap: clamp(20px, 3vh, 36px); width: min(84vw, 760px); padding-inline: clamp(8px, 4vw, 72px); }
+.jr-gallery__end p { font-family: var(--jr-display); font-weight: 900; font-variation-settings: "wdth" 150; text-transform: uppercase; font-size: clamp(30px, 4.2vw, 76px); line-height: 0.98; letter-spacing: -0.01em; text-wrap: balance; color: #fff; text-shadow: 0 0 0.03em #fff, 0 0 0.2em var(--jr-neon), 0 0 0.7em var(--jr-neon); }
+
+@media (min-width: 900px) {
+  /* room for the drift inside each frame */
+  .jr--motion .jr-shot__frame img { width: 114%; max-width: none; margin-left: -7%; }
+}
 @media (max-width: 899px) {
   .jr-b__top { grid-template-columns: minmax(0, 1fr); }
   .jr-b__lead { justify-self: start; }
   .jr-gallery { height: auto; min-height: 0; padding-top: 56px; }
-  .jr-gallery__track { width: auto; height: 62svh; max-height: 460px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+  .jr-gallery__track { width: auto; height: 64svh; max-height: 480px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
   .jr-gallery__track::-webkit-scrollbar { display: none; }
-  .jr-gallery__item { scroll-snap-align: center; }
+  .jr-gallery__track { scroll-padding-inline: var(--jr-gutter); }
+  .jr-shot, .jr-gallery__end { scroll-snap-align: start; }
+  /* a photo never gets wider than the phone, so the next one always peeks in */
+  .jr-shot__frame { max-width: 82vw; }
 }
 
 /* ── Stage ── */

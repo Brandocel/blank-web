@@ -76,6 +76,16 @@ const es = {
     soundOff: "Silenciar",
     genres: ["Pop", "Rock", "Latino", "Disco", "Funk", "Cumbia", "Los clásicos"],
     galleryTitle: "Así termina la noche",
+    galleryCaptions: [
+      "El tambor se enciende.",
+      "Chispas en el último coro.",
+      "La pista, llena.",
+      "El solo.",
+      "El cantante baja a saludar.",
+      "Nadie se sienta.",
+      "La banda completa, de blanco.",
+    ],
+    galleryEnd: "¿Y la tuya cómo termina?",
     galleryAlt: [
       "Percusionista de The Juanras tocando un tambor iluminado",
       "Cantante entre chispas de pirotecnia fría",
@@ -205,6 +215,16 @@ const en: Copy = {
     soundOff: "Mute",
     genres: ["Pop", "Rock", "Latin", "Disco", "Funk", "Cumbia", "The classics"],
     galleryTitle: "How the night ends",
+    galleryCaptions: [
+      "The drum lights up.",
+      "Sparks on the last chorus.",
+      "A full dance floor.",
+      "The solo.",
+      "The singer comes down to say hi.",
+      "Nobody sits down.",
+      "The full band, in white.",
+    ],
+    galleryEnd: "How does yours end?",
     galleryAlt: [
       "The Juanras percussionist playing a light-up drum",
       "Singer among cold-spark fountains",

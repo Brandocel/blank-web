@@ -25,6 +25,9 @@ services:
         value: blank.space
       - key: LEAD_WEBHOOK_URL
         sync: false
+      # Propuesta The Juanras (/juanras): contrataciones y perfiles de músicos. Sin webhook se pierden en cada deploy.
+      - key: JUANRAS_WEBHOOK_URL
+        sync: false
       # Demo en vivo de NØDE (/demo). Sin clave, el chat queda desactivado.
       - key: ANTHROPIC_API_KEY
         sync: false

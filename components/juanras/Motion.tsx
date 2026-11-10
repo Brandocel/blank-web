@@ -60,14 +60,29 @@ export default function Motion() {
 
     // Wide screens: the gallery pins and travels sideways. Narrow ones keep the native swipe.
     mm.add("(min-width: 900px)", () => {
+      const gallery = root.querySelector<HTMLElement>(".jr-gallery");
       const track = root.querySelector<HTMLElement>(".jr-gallery__track");
-      if (!track) return;
-      const travel = () => Math.max(0, track.scrollWidth - window.innerWidth);
-      gsap.to(track, {
+      if (!gallery || !track) return;
+      const travel = () => Math.max(0, track.scrollWidth - gallery.clientWidth);
+      const strip = gsap.to(track, {
         x: () => -travel(),
         ease: "none",
-        scrollTrigger: { trigger: ".jr-gallery", start: "top top", end: () => `+=${travel()}`, pin: true, scrub: 0.5, invalidateOnRefresh: true, anticipatePin: 1 },
+        scrollTrigger: {
+          trigger: gallery,
+          start: "top top",
+          end: () => `+=${travel()}`,
+          pin: true,
+          scrub: 0.5,
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
+          onUpdate: (self) => gallery.style.setProperty("--p", self.progress.toFixed(3)),
+        },
       });
+      // Each photo drifts a little inside its frame as it crosses the screen.
+      gsap.utils.toArray<HTMLElement>(".jr-shot__frame").forEach((frame) => {
+        gsap.fromTo(frame.querySelector("img"), { xPercent: -6 }, { xPercent: 6, ease: "none", scrollTrigger: { trigger: frame, containerAnimation: strip, start: "left right", end: "right left", scrub: true } });
+      });
+      return () => gallery.style.removeProperty("--p");
     });
 
     document.fonts?.ready.then(() => ScrollTrigger.refresh());
