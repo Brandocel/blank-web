@@ -36,6 +36,18 @@ Tipos: `demo`, `registro`, `mensaje`, `newsletter`.
 
 > En hosting serverless (Vercel, Netlify) el disco es de solo lectura: configura `LEAD_WEBHOOK_URL` para no perder solicitudes. En un servidor Node propio (VPS, Railway, Render) el archivo funciona tal cual.
 
+## Demo en vivo de NØDE (`/demo`)
+
+Página abierta, sin registro: un espacio de ejemplo con seis documentos ficticios (`lib/demo-docs.ts`) y chat con IA real (Claude, `app/api/demo/route.ts`). NØDE responde cruzando los documentos y propone acciones (recordatorio, borrador, tarea, archivar) que el visitante confirma; lo confirmado aparece en "Tu espacio". Nada se guarda en servidor.
+
+| Variable | Uso |
+|---|---|
+| `ANTHROPIC_API_KEY` | Obligatoria para que el chat responda. Sin ella la página carga con el chat desactivado. La cuenta necesita saldo. |
+| `DEMO_MESSAGES_PER_VISITOR` | Mensajes por IP al día (20 por defecto) |
+| `DEMO_DAILY_CAP` | Tope diario de mensajes de todo el sitio (1500 por defecto) |
+
+Los contadores viven en memoria y se reinician con cada deploy. Para cambiar el caso de ejemplo, edita los documentos y el prompt en `lib/demo-docs.ts`.
+
 ## Estructura
 
 ```
