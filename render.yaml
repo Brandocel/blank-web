@@ -25,3 +25,10 @@ services:
         value: blank.space
       - key: LEAD_WEBHOOK_URL
         sync: false
+      # Demo en vivo de NØDE (/demo). Sin clave, el chat queda desactivado.
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: DEMO_MESSAGES_PER_VISITOR
+        value: "20"
+      - key: DEMO_DAILY_CAP
+        value: "1500"

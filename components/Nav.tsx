@@ -59,6 +59,7 @@ export default function Nav() {
           ))}
         </nav>
         <div className="nav__cta">
+          <a href="/demo" className="btn btn--ghost btn--sm hide-sm">Probar NØDE</a>
           <a href="#registro" className="btn btn--ghost btn--sm hide-sm">Registrarse</a>
           <a href="#demo" className="btn btn--outline btn--sm">
             Agendar conversación <span aria-hidden="true">↗</span>
@@ -78,6 +79,7 @@ export default function Nav() {
         {nav.map((l) => (
           <a key={l.href} href={l.href} onClick={close}>{l.label}</a>
         ))}
+        <a href="/demo" onClick={close}>Probar NØDE en vivo</a>
         <div className="mobile-menu__cta">
           <a href="#escribir" className="btn btn--ghost" onClick={close}>Escribir</a>
           <a href="#registro" className="btn btn--ghost" onClick={close}>Registrarse</a>

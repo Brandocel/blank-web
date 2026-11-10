@@ -13,7 +13,7 @@ export default function Node() {
           <p className="lead" data-fade>NØDE no guarda información. Construye contexto: une lo que hoy vive disperso y lo convierte en acción.</p>
           <div className="stage__cta" data-fade>
             <a href="#registro" data-plan="node" className="btn btn--light">Activar NØDE</a>
-            <a href="#demo" data-product="NØDE" className="link-arrow">Verlo en vivo <span aria-hidden="true">→</span></a>
+            <a href="/demo" className="link-arrow">Probarlo en vivo <span aria-hidden="true">→</span></a>
           </div>
         </div>
         <div className="stage__art" data-rise>

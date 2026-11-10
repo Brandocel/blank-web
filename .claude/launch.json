@@ -1,6 +1,7 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "blank-web", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev"], "port": 3000 }
+    { "name": "blank-web", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev"], "port": 3000 },
+    { "name": "juanras-web", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "../juanras", "run", "dev"], "port": 3100 }
   ]
 }
